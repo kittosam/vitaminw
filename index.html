@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vitamin W · Websites for medical society meetings</title>
 <meta name="description" content="Standalone websites for focus meetings, courses and satellite symposia.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:opsz,wght,SOFT@9..144,800..900,100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
     --cream: #f5e9d8;
@@ -164,6 +162,59 @@
   .card h3 { font-size: 24px; margin-bottom: 14px; }
   .card p { margin: 0; color: var(--muted); font-size: 16px; }
 
+  /* Case study results + quote */
+  .results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 64px 0 0; padding-top: 40px; border-top: 1px solid #3a3632; }
+  .results dt { font: 600 13px/1.3 var(--body); letter-spacing: .12em; text-transform: uppercase; color: #a99e90; margin-bottom: 10px; }
+  .results dd { margin: 0; font: 900 clamp(32px, 3.6vw, 44px)/1 var(--display); font-variation-settings: "SOFT" 100; color: #f8ecd9; }
+  .quote { margin: 48px 0 0; padding-left: 28px; border-left: 3px solid #f0a66a; max-width: 820px; }
+  .quote p { margin: 0 0 14px; font: 900 clamp(20px, 2vw, 26px)/1.35 var(--display); font-variation-settings: "SOFT" 100; color: #f8ecd9; }
+  .quote cite { font-style: normal; font-size: 15px; color: #b8ad9f; }
+
+  /* Placeholders still to fill in: visible on purpose */
+  .todo { background: #fff1a8; color: #4a3b00; border-radius: 4px; padding: 0 4px; outline: 1px dashed #c9a400; }
+
+  /* How it works */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .steps li { border-top: 2px solid var(--ink); padding-top: 22px; }
+  .steps .num { font: 900 18px/1 var(--display); color: var(--rust); display: block; margin-bottom: 18px; }
+  .steps h3 { font-size: 26px; margin-bottom: 12px; }
+  .steps p { margin: 0; color: var(--muted); font-size: 16px; }
+  .needs { margin-top: 56px; background: var(--sand); border-radius: var(--radius-l); padding: 40px 44px; display: grid; grid-template-columns: 1fr 2fr; gap: 24px 48px; }
+  .needs h3 { font-size: 26px; }
+  .needs ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px; }
+  .needs li { padding-left: 24px; position: relative; color: var(--muted); font-size: 16px; }
+  .needs li::before { content: ""; position: absolute; left: 0; top: .6em; width: 10px; height: 10px; border-radius: 50%; background: var(--rust); }
+
+  /* Pricing */
+  .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .price { border-radius: var(--radius-l); padding: 40px 36px; background: #fbf4ea; border: 1px solid #ead9c2; display: flex; flex-direction: column; }
+  .price.featured { background: var(--dark); color: #f5e9d8; border-color: var(--dark); }
+  .price h3 { font-size: 24px; margin-bottom: 8px; }
+  .price .for { margin: 0 0 24px; color: var(--muted); font-size: 16px; }
+  .price.featured .for { color: #c9bfb2; }
+  .price .amount { font: 900 clamp(34px, 3.4vw, 44px)/1 var(--display); font-variation-settings: "SOFT" 100; margin-bottom: 28px; }
+  .price .amount small { font: 500 15px/1 var(--body); color: var(--muted); margin-right: 6px; }
+  .price.featured .amount small { color: #c9bfb2; }
+  .price ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 16px; }
+  .price li { padding-left: 26px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--rust); font-weight: 600; }
+  .price.featured li::before { color: #f0a66a; }
+  .price-note { margin: 28px 0 0; color: var(--muted); font-size: 16px; }
+
+  /* FAQ */
+  .faq-list { border-top: 1px solid rgba(31, 29, 27, .2); }
+  .faq-list details { border-bottom: 1px solid rgba(31, 29, 27, .2); }
+  .faq-list summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    padding: 26px 0; font: 900 clamp(20px, 2vw, 26px)/1.25 var(--display); font-variation-settings: "SOFT" 100;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; font: 400 30px/1 var(--body); color: var(--rust); transition: transform .2s; }
+  .faq-list details[open] summary::after { transform: rotate(45deg); }
+  .faq-list summary:hover { color: var(--rust-deep); }
+  .faq-list details p { margin: 0 0 28px; max-width: 780px; color: var(--muted); }
+  .faq-list details.lead summary { color: var(--rust-deep); }
+
   /* About */
   .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
   .about h2 { margin-bottom: 28px; }
@@ -199,12 +250,15 @@
   }
   .contact-card .btn { display: flex; width: fit-content; }
 
-  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 72px 0 56px; color: var(--muted); font-size: 16px; }
+  footer { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px 32px; flex-wrap: wrap; padding: 72px 0 56px; color: var(--muted); font-size: 16px; }
+  footer .legal { font-size: 14px; margin-top: 6px; }
+  footer a { color: var(--muted); }
 
   /* Responsive */
   @media (max-width: 1100px) {
-    .cards { grid-template-columns: 1fr 1fr; }
+    .cards, .steps { grid-template-columns: 1fr 1fr; }
     .work-grid { grid-template-columns: 220px 1fr; gap: 40px; }
+    .prices { grid-template-columns: 1fr; max-width: 640px; }
     .project-head { flex-direction: column; align-items: flex-start; }
   }
   @media (max-width: 900px) {
@@ -214,6 +268,8 @@
     .bubbles { justify-self: center; }
     .case, .contact-card { padding: 48px 32px; border-radius: 36px; }
     .case-shots { margin-top: 48px; gap: 24px; }
+    .results { grid-template-columns: 1fr 1fr; }
+    .needs { grid-template-columns: 1fr; padding: 32px; }
 
     /* Index becomes a sticky row of names above the project */
     .work-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -236,7 +292,9 @@
     .hero { padding-top: 72px; }
     .hero::before { width: 300px; height: 300px; top: -200px; right: -120px; }
     .case, .contact-card { padding: 40px 22px; border-radius: 28px; }
-    .case-shots, .project .pair, .cards { grid-template-columns: 1fr; }
+    .case-shots, .project .pair, .cards, .steps, .needs ul { grid-template-columns: 1fr; }
+    .needs { padding: 28px 22px; }
+    .price { padding: 32px 24px; }
     .frame { border-radius: 12px; }
     .frame-bar { height: 26px; }
     .frame-bar span { display: none; }
@@ -253,6 +311,7 @@
     <ul>
       <li><a href="#work">Work</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
       <li><a href="#about">About</a></li>
       <li><a class="btn" href="#contact">Get in touch</a></li>
     </ul>
@@ -296,6 +355,18 @@
         <p class="frame-caption">Every meeting in date order, each leading to its own site</p>
       </div>
     </div>
+    <dl class="results">
+      <div><dt>Meeting sites</dt><dd>6 + hub</dd></div>
+      <div><dt>Cities</dt><dd>6</dd></div>
+      <div><dt>Countries</dt><dd>5</dd></div>
+      <div><dt>Meetings run</dt><dd>Apr–Oct</dd></div>
+    </dl>
+    <!-- Add a client quote here when you have one:
+    <blockquote class="quote">
+      <p>Quote from your ESSKA contact</p>
+      <cite>Name, Role, ESSKA</cite>
+    </blockquote>
+    -->
   </article>
 
   <section id="work">
@@ -329,6 +400,115 @@
     </div>
   </section>
 
+  <section id="process">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">How it works</p>
+        <h2>Four steps, one person</h2>
+      </div>
+      <p class="lede">A meeting site goes live a few weeks after the brief, then stays up to date until the last session.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="num">01</span><h3>Brief</h3><p>A call with the society office or congress organiser: the meeting, the audience, the deadlines and what you already have.</p></li>
+      <li><span class="num">02</span><h3>Design</h3><p>A layout in the meeting’s own colours and imagery, reviewed and approved with you before anything is built.</p></li>
+      <li><span class="num">03</span><h3>Launch</h3><p>The site goes live with programme, faculty, venue and registration, ready to send to delegates.</p></li>
+      <li><span class="num">04</span><h3>Updates</h3><p>Faculty confirmations, programme changes, new deadlines and rates, published as they arrive until the meeting ends.</p></li>
+    </ol>
+    <div class="needs">
+      <h3>What I need from you</h3>
+      <ul>
+        <li>Meeting title, dates and venue</li>
+        <li>Logo and any society brand guidelines</li>
+        <li>Programme and faculty, even in draft</li>
+        <li>Your registration link or platform</li>
+        <li>Photos of the city or venue, if you have them</li>
+        <li>One contact person for approvals</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2>A fixed price per meeting</h2>
+      </div>
+      <p class="lede">Agreed before work starts, so it fits a committee budget. No hourly billing and no surprises.</p>
+    </div>
+    <div class="prices">
+      <div class="price">
+        <h3>Meeting site</h3>
+        <p class="for">One focus meeting, course or symposium</p>
+        <div class="amount"><small>from</small>€3,500</div>
+        <ul>
+          <li>Design in the meeting’s own look</li>
+          <li>Programme, faculty, venue and registration pages</li>
+          <li>Countdown and key deadlines</li>
+          <li>Updates until the meeting ends</li>
+        </ul>
+      </div>
+      <div class="price featured">
+        <h3>Meeting series</h3>
+        <p class="for">Several meetings under one society</p>
+        <div class="amount"><small>from</small>€2,800<small style="margin:0 0 0 6px">per meeting</small></div>
+        <ul>
+          <li>A hub site that presents the whole series, from €2,500</li>
+          <li>One shared system, each meeting with its own colour</li>
+          <li>About 20% less per meeting than a single site</li>
+          <li>Updates across all sites until each meeting ends</li>
+        </ul>
+      </div>
+      <div class="price">
+        <h3>Extras</h3>
+        <p class="for">Added to any site</p>
+        <div class="amount"><small>from</small>€400</div>
+        <ul>
+          <li>Italian or French version, from €600</li>
+          <li>Skills lab, workshop or abstract pages</li>
+          <li>Keeping the site online after the meeting, from €150 a year</li>
+          <li>Changes after the meeting has ended</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">Prices exclude VAT. 50% at the start and 50% at launch; for a series, each meeting is invoiced separately.</p>
+  </section>
+
+  <section id="faq">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Questions</p>
+        <h2>Before you ask</h2>
+      </div>
+      <p class="lede">What society offices and congress organisers usually want to know first.</p>
+    </div>
+    <div class="faq-list">
+      <details class="lead" open>
+        <summary>Couldn’t we just build it ourselves with AI?</summary>
+        <p>You can generate a good-looking page in an afternoon. The work on a meeting site is everything after that: getting dozens of faculty names, titles and affiliations right, publishing the programme change that arrives two days before the meeting, checking that registration links, deadlines and rates are correct, and having one person who answers for it when something is wrong. I use AI tools myself where they save time, which keeps the price down. What you pay for is accuracy, fast updates and someone responsible.</p>
+      </details>
+      <details>
+        <summary>Is it GDPR-compliant?</summary>
+        <p>The meeting site itself collects no personal data: registration and payments stay on your existing platform. Fonts are served from the site itself rather than from third parties, and each site has a privacy notice. If you want visitor statistics, they are set up without tracking cookies.</p>
+      </details>
+      <details>
+        <summary>Where is the site hosted, and who owns it?</summary>
+        <p>Hosting is agreed with you at the start: on your society’s own servers, or on hosting I set up and manage for you. Either way the domain and the content are yours, and you get a full copy of the site when the meeting is over.</p>
+      </details>
+      <details>
+        <summary>Is it accessible?</summary>
+        <p>Sites are built with readable contrast, keyboard navigation, text alternatives for images and layouts that work on phones, which is where most delegates check the programme.</p>
+      </details>
+      <details>
+        <summary>Does it work with our registration or abstract platform?</summary>
+        <p>Yes. The site links to or embeds the system you already use, whether that is your society’s own portal or one run by your congress organiser, so nothing changes for your team or your delegates.</p>
+      </details>
+      <details>
+        <summary>Do you work with PCOs?</summary>
+        <p>Yes. I can work directly for the society or alongside your professional congress organiser, with one point of contact for approvals.</p>
+      </details>
+    </div>
+  </section>
+
   <section class="about" id="about">
     <div class="about-grid">
       <div>
@@ -355,7 +535,10 @@
   </section>
 
   <footer>
-    <span>Vitamin W · Samanta, website designer</span>
+    <div>
+      <div>Vitamin W · Samanta, website designer</div>
+      <div class="legal"><a href="privacy.html">Privacy policy</a></div>
+    </div>
     <span>English · Italiano · Français</span>
   </footer>
 </div>
