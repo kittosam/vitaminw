@@ -5,12 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy policy · Vitamin W</title>
 <link rel="stylesheet" href="fonts/fonts.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
   :root { --cream: #f5e9d8; --ink: #1f1d1b; --muted: #5d554c; --rust: #c6703b; }
   body { margin: 0; background: var(--cream); color: var(--ink); font: 400 17px/1.7 "Figtree", system-ui, sans-serif; }
   main { width: min(760px, 100% - 32px); margin: 0 auto; padding: 48px 0 96px; }
   a { color: var(--rust); }
-  .back { font-weight: 600; text-decoration: none; }
+  .logo {
+    display: inline-flex; align-items: center; gap: .3em;
+    border: 2.5px solid var(--ink); border-radius: 999px; padding: 6px 16px 7px;
+    font: 900 20px/1 "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144;
+    color: var(--ink); text-decoration: none;
+  }
+  .logo .w { display: inline-flex; align-items: center; gap: .08em; }
+  .logo .tag { font: 800 .78em/1 "Figtree", sans-serif; color: var(--rust); }
   h1, h2 { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100; font-weight: 900; line-height: 1.1; }
   h1 { font-size: clamp(36px, 6vw, 52px); margin: 40px 0 8px; }
   h2 { font-size: 24px; margin: 40px 0 8px; }
@@ -20,7 +28,7 @@
 </head>
 <body>
 <main>
-  <a class="back" href="./">← Vitamin W</a>
+  <a class="logo" href="./" aria-label="Vitamin W, home">Vitamin <span class="w" aria-hidden="true"><span class="tag">&lt;</span>W<span class="tag">/&gt;</span></span></a>
   <h1>Privacy policy</h1>
   <p>Last updated: 19 October 2026</p>
 
