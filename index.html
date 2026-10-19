@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitamin W · Websites for medical society meetings</title>
+<meta name="description" content="Standalone websites for focus meetings, courses and satellite symposia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:opsz,wght,SOFT@9..144,800..900,100&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5e9d8;
+    --sand: #ebdcc6;
+    --ink: #1f1d1b;
+    --muted: #5d554c;
+    --rust: #c6703b;
+    --rust-deep: #8a4416;
+    --peach: #ffe0d0;
+    --peach-strong: #ffc5a3;
+    --mint: #e0edc9;
+    --sage: #cddbb0;
+    --moss: #4f5f37;
+    --dark: #201e1c;
+
+    --wrap: 1240px;
+    --gutter: 24px;
+    --section: 136px;      /* vertical rhythm between sections */
+    --h2: clamp(36px, 4.4vw, 56px);
+    --radius-xl: 48px;
+    --radius-l: 32px;
+    --display: "Fraunces", Georgia, serif;
+    --body: "Figtree", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font: 400 18px/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  .wrap { width: min(var(--wrap), 100% - 2 * var(--gutter)); margin-inline: auto; }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    margin: 0;
+  }
+  h2 { font-size: var(--h2); }
+  .eyebrow {
+    font: 600 14px/1 var(--body);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust-deep);
+    margin: 0 0 20px;
+  }
+  .lede { color: var(--muted); font-size: clamp(17px, 1.5vw, 20px); margin: 0; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--rust); color: #fff6ec;
+    font: 900 16px/1 var(--display); font-variation-settings: "SOFT" 100;
+    padding: 16px 24px; border-radius: 999px;
+    text-decoration: none; white-space: nowrap;
+    transition: transform .2s, background .2s;
+  }
+  .btn:hover { background: #b45f2c; transform: translateY(-2px); }
+
+  section { padding-top: var(--section); scroll-margin-top: 8px; }
+
+  /* Shared section header: title left, short intro right */
+  .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: end; margin-bottom: 64px; }
+  .section-head .lede { max-width: 480px; }
+
+  /* Browser frame for every screenshot */
+  .frame {
+    margin: 0; background: #fff; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 20px 44px -12px rgba(60, 40, 20, .22);
+  }
+  .frame-bar {
+    display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px;
+    background: #f3eee7; border-bottom: 1px solid #e6ded3;
+  }
+  .frame-bar i { width: 10px; height: 10px; border-radius: 50%; background: #dcd2c4; }
+  .frame-bar span {
+    margin-left: 12px; flex: 1; max-width: 360px; height: 20px; border-radius: 6px; background: #fff;
+    font-size: 11px; line-height: 20px; color: #8a8076; padding: 0 10px;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  .frame img { width: 100%; aspect-ratio: 1440 / 900; object-fit: cover; object-position: top; }
+  .frame-caption { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .case .frame-caption { color: #b8ad9f; }
+
+  /* Nav */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; position: relative; z-index: 2; }
+  .nav .logo { font: 900 22px/1 var(--display); font-variation-settings: "SOFT" 100; text-decoration: none; }
+  .nav ul { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a:not(.btn) { text-decoration: none; font-size: 16px; }
+  .nav ul a:not(.btn):hover { color: var(--rust); }
+  .nav .btn { padding: 12px 20px; font-size: 15px; color: var(--ink); }
+
+  /* Hero */
+  .hero { position: relative; padding: 112px 0 24px; }
+  .hero::before {
+    content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; border-radius: 50%;
+    background: var(--mint); top: -360px; right: -160px;
+  }
+  .hero h1 { font-size: clamp(46px, 7.4vw, 100px); max-width: 1000px; margin-bottom: 36px; }
+  .hero h1 em { font-style: normal; color: var(--rust); }
+  .hero .lede { max-width: 760px; }
+  .hero .actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 40px; }
+  .mail-link { font: 900 17px/1 var(--display); font-variation-settings: "SOFT" 100; color: var(--rust); text-decoration: none; }
+  .mail-link:hover { text-decoration: underline; }
+
+  /* Case study */
+  .case { background: var(--dark); color: #f5e9d8; border-radius: var(--radius-xl); padding: 72px; margin-top: var(--section); }
+  .case .eyebrow { color: #f0a66a; }
+  .case h2 { color: #f8ecd9; margin-bottom: 28px; }
+  .case .lede { color: #d4c9bb; }
+  .case-top { display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px; align-items: start; }
+  .meta { margin: 0; display: grid; gap: 28px; padding-top: 6px; }
+  .meta dt { font: 600 13px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: #a99e90; margin-bottom: 10px; }
+  .meta dd { margin: 0; font-size: 20px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .tags li { font-size: 14px; padding: 4px 14px; border-radius: 999px; background: #fdebe2; color: #6a3618; }
+  .tags li.green { background: #edf6e0; color: #3d4a2a; }
+  .case-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 64px; }
+
+  /* Work: sticky index + project view */
+  .work-grid { display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: start; }
+  .index { position: sticky; top: 32px; list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .index button {
+    all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
+    display: flex; align-items: baseline; gap: 18px; padding: 16px 22px; border-radius: 20px;
+    transition: background .2s;
+  }
+  .index button:hover { background: rgba(255, 224, 208, .55); }
+  .index button[aria-selected="true"] { background: var(--peach); }
+  .index button:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+  .index .num { font: 900 17px/1 var(--display); color: var(--rust); min-width: 26px; }
+  .index h3 { font-size: 24px; line-height: 1.2; }
+
+  .project[hidden] { display: none; }
+  .project { animation: fade .35s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .project-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 40px; margin-bottom: 36px; }
+  .project h3 { font-size: clamp(28px, 3vw, 40px); margin-bottom: 10px; }
+  .project .sub { margin: 0; color: var(--muted); font-size: 18px; }
+  .project .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px; }
+
+  /* Services */
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card { border-radius: var(--radius-l); padding: 36px 32px 40px; background: var(--sand); }
+  .card.green { background: var(--mint); }
+  .card .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--rust); margin-bottom: 24px; }
+  .card h3 { font-size: 24px; margin-bottom: 14px; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+  .about h2 { margin-bottom: 28px; }
+  .about .lede { margin-bottom: 28px; }
+  .langs { display: flex; gap: 10px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  .langs li { border: 1.5px solid var(--rust); color: var(--rust); border-radius: 999px; padding: 3px 14px; font-size: 16px; }
+  .bubbles { position: relative; aspect-ratio: 1 / 1; max-width: 460px; width: 100%; justify-self: end; }
+  .bubble { position: absolute; border-radius: 50%; display: grid; place-content: center; text-align: center; padding: 20px; }
+  .bubble b { font: 900 clamp(48px, 5.4vw, 68px)/1 var(--display); font-variation-settings: "SOFT" 100; display: block; margin-bottom: 8px; }
+  .bubble span { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 1.6; }
+  .b1 { width: 52%; height: 52%; left: 0; top: 6%; background: var(--peach); padding-right: 44px; }
+  .b1 b { color: var(--rust-deep); }
+  .b2 { width: 58%; height: 58%; right: 0; top: 0; background: var(--sage); z-index: 1; }
+  .b2 b { color: #2f3a22; }
+  .b3 { width: 46%; height: 46%; left: 27%; bottom: 0; background: #eef7dd; z-index: 2; }
+  .b3 b { color: var(--moss); }
+
+  /* Contact */
+  .contact-card {
+    position: relative; overflow: hidden;
+    background: var(--peach); border-radius: var(--radius-xl); padding: 80px 72px;
+  }
+  .contact-card::after {
+    content: ""; position: absolute; width: 460px; height: 460px; border-radius: 50%;
+    background: var(--peach-strong); right: -120px; bottom: -220px;
+  }
+  .contact-card > * { position: relative; z-index: 1; }
+  .contact-card .eyebrow { color: #6a3618; }
+  .contact-card h2 { max-width: 620px; margin-bottom: 36px; }
+  .big-mail {
+    display: inline-block; font: 900 clamp(24px, 2.8vw, 36px)/1.2 var(--display); font-variation-settings: "SOFT" 100;
+    color: #6a3618; text-decoration: none; border-bottom: 3px solid currentColor; margin-bottom: 32px; overflow-wrap: anywhere;
+  }
+  .contact-card .btn { display: flex; width: fit-content; }
+
+  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 72px 0 56px; color: var(--muted); font-size: 16px; }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .work-grid { grid-template-columns: 220px 1fr; gap: 40px; }
+    .project-head { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 900px) {
+    :root { --section: 104px; }
+    .section-head, .about-grid, .case-top { grid-template-columns: 1fr; }
+    .section-head { margin-bottom: 40px; }
+    .bubbles { justify-self: center; }
+    .case, .contact-card { padding: 48px 32px; border-radius: 36px; }
+    .case-shots { margin-top: 48px; gap: 24px; }
+
+    /* Index becomes a sticky row of names above the project */
+    .work-grid { grid-template-columns: 1fr; gap: 28px; }
+    .index {
+      top: 0; z-index: 5; display: flex; overflow-x: auto; gap: 6px;
+      margin: 0 calc(-1 * var(--gutter)); padding: 12px var(--gutter);
+      scroll-padding-inline: var(--gutter); scrollbar-width: none;
+      background: var(--cream); box-shadow: 0 8px 16px -12px rgba(60, 40, 20, .25);
+    }
+    .index::-webkit-scrollbar { display: none; }
+    .index li { flex: 0 0 auto; }
+    .index button { padding: 10px 16px; border-radius: 999px; gap: 10px; background: rgba(235, 220, 198, .6); }
+    .index .num { font-size: 13px; min-width: 0; }
+    .index h3 { font-size: 17px; white-space: nowrap; }
+  }
+  @media (max-width: 640px) {
+    :root { --gutter: 16px; --section: 88px; }
+    body { font-size: 17px; }
+    .nav ul li:not(:last-child) { display: none; }
+    .hero { padding-top: 72px; }
+    .hero::before { width: 300px; height: 300px; top: -200px; right: -120px; }
+    .case, .contact-card { padding: 40px 22px; border-radius: 28px; }
+    .case-shots, .project .pair, .cards { grid-template-columns: 1fr; }
+    .frame { border-radius: 12px; }
+    .frame-bar { height: 26px; }
+    .frame-bar span { display: none; }
+    .bubble { padding: 12px; }
+    .bubble span { font-size: 11px; letter-spacing: .06em; }
+    .b1 { padding-right: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top">Vitamin W</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a class="btn" href="#contact">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <p class="eyebrow">Vitamin W · Samanta, website designer</p>
+    <h1>Websites for <em>medical society meetings</em></h1>
+    <p class="lede">I build standalone websites for the smaller meetings that medical societies run around their main congress, including focus meetings, courses and satellite symposia. Each site has the programme, faculty, venue and registration in one place, and I keep it updated with changes until the meeting takes place.</p>
+    <div class="actions">
+      <a class="btn" href="#work">See the work</a>
+      <a class="mail-link" href="mailto:info@vitaminw.com">info@vitaminw.com</a>
+    </div>
+  </header>
+
+  <article class="case" aria-labelledby="case-title">
+    <div class="case-top">
+      <div>
+        <p class="eyebrow">Case study · 2026</p>
+        <h2 id="case-title">ESSKA Focus Meetings 2027</h2>
+        <p class="lede">In 2026 I built six microsites for ESSKA’s focus meetings: six subjects in six cities, from April to October 2027. Each meeting has its own site with programme, faculty, venue and registration, and its own colour and imagery inside one shared system.</p>
+      </div>
+      <dl class="meta">
+        <div><dt>Client</dt><dd>ESSKA</dd></div>
+        <div><dt>Sites</dt><dd>1 hub + 6 microsites</dd></div>
+        <div><dt>Role</dt><dd>
+          <ul class="tags">
+            <li>UI design</li><li>Development</li>
+            <li class="green">Content structure</li><li class="green">Ongoing maintenance</li>
+          </ul>
+        </dd></div>
+      </dl>
+    </div>
+    <div class="case-shots">
+      <div>
+        <figure class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>esska-focus-meetings.org</span></div><img src="work/hub-hero.jpg" alt="ESSKA Focus Meetings hub: Six meetings. Six cities. One year." width="1440" height="900" loading="lazy"></figure>
+        <p class="frame-caption">The hub that introduces the series</p>
+      </div>
+      <div>
+        <figure class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>esska-focus-meetings.org</span></div><img src="work/hub-cards.jpg" alt="The 2027 focus meetings listed as cards in date order" width="1440" height="900" loading="lazy"></figure>
+        <p class="frame-caption">Every meeting in date order, each leading to its own site</p>
+      </div>
+    </div>
+  </article>
+
+  <section id="work">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">The work</p>
+        <h2>Six sites, one series</h2>
+      </div>
+      <p class="lede">In date order. Every site is live: pick a meeting to see it, then open it in the browser.</p>
+    </div>
+
+    <div class="work-grid">
+      <ol class="index" role="tablist" aria-label="The six meetings"></ol>
+      <div class="projects"></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2>From first layout to the last day of the meeting</h2>
+      </div>
+      <p class="lede">One person from design to launch, and on hand for every change until the meeting opens.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="dot"></div><h3>UI design</h3><p>Layout, type and colour for each event, so every meeting looks like itself within the series it belongs to.</p></div>
+      <div class="card"><div class="dot" style="background:#b4602c"></div><h3>Development</h3><p>Responsive sites built and launched by me, with the countdowns, programmes and registration links an event needs.</p></div>
+      <div class="card green"><div class="dot" style="background:#7c8a5c"></div><h3>Content structure</h3><p>Programme, faculty, venue and registration organised so delegates find what they came for in a click or two.</p></div>
+      <div class="card green"><div class="dot" style="background:#4f5f37"></div><h3>Ongoing maintenance</h3><p>Updates right up to the meeting: confirmed faculty, programme changes, new deadlines and rates.</p></div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Hi, I’m Samanta.</h2>
+        <p class="lede">I design and build websites for medical societies and congress organisers, mostly for focus meetings, courses and satellite symposia, so each event gets a proper standalone site. In 2026 I built six microsites for ESSKA’s focus meetings. Before that I spent about eight years running software implementations across Europe. I work in English, Italian and French.</p>
+        <ul class="langs"><li>English</li><li>Italiano</li><li>Français</li></ul>
+      </div>
+      <div class="bubbles" aria-label="Key numbers">
+        <div class="bubble b1"><b>6</b><span>Microsites<br>in 2026</span></div>
+        <div class="bubble b2"><b>~8</b><span>Years of software<br>implementations</span></div>
+        <div class="bubble b3"><b>3</b><span>Working<br>languages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <p class="eyebrow">Contact</p>
+      <h2>Planning a meeting? Let’s give it a proper site.</h2>
+      <a class="big-mail" href="mailto:info@vitaminw.com">info@vitaminw.com</a>
+      <a class="btn" href="mailto:info@vitaminw.com">Write to me</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Vitamin W · Samanta, website designer</span>
+    <span>English · Italiano · Français</span>
+  </footer>
+</div>
+
+<script>
+  // The six meetings: name in the index, details in the project view
+  const SITES = [
+    { key: 'hip', name: 'Hip', slug: 'hip-2027', title: 'Hip Injuries in Athletes', sub: 'From FAI to DDH, the Olympic path to joint preservation · Athens, 15–16 April 2027' },
+    { key: 'sports-knee', name: 'Sports Knee', slug: 'sports-knee-2027', title: 'Mastering Primary ACL Reconstruction', sub: 'Getting it right first time · Dublin, 14–15 May 2027' },
+    { key: 'sports-medicine', name: 'Sports Medicine', slug: 'sports-medicine-2027', title: 'Return to Performance after ACL Reconstruction', sub: 'In football players · Bologna, 26–27 June 2027' },
+    { key: 'shoulder', name: 'Shoulder', slug: 'shoulder-2027', title: 'Massive Rotator Cuff Tears', sub: 'From repair to replace · Istanbul, 10–11 September 2027' },
+    { key: 'arthroplasty', name: 'Arthroplasty', slug: 'arthroplasty-2027', title: 'Revision Knee Arthroplasty and Periprosthetic Joint Infection', sub: 'Current concepts and future directions · Rome, 8–9 October 2027' },
+    { key: 'foot-ankle', name: 'Foot & Ankle', slug: 'foot-ankle-2027', title: 'From Mechanism to Match Fitness', sub: 'Managing syndesmosis injuries in athletes · London, 29 October 2027' },
+  ];
+  const esc = s => s.replace(/&/g, '&amp;');
+  const frame = (src, alt, url) =>
+    `<figure class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${url}</span></div>` +
+    `<img src="${src}" alt="${alt}" width="1440" height="900" loading="lazy"></figure>`;
+
+  const index = document.querySelector('.index');
+  const projects = document.querySelector('.projects');
+  SITES.forEach((s, i) => {
+    const url = `esska-focus-meetings.org/${s.slug}`;
+    index.insertAdjacentHTML('beforeend',
+      `<li><button role="tab" id="tab-${s.key}" aria-controls="p-${s.key}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">` +
+      `<span class="num">0${i + 1}</span><h3>${esc(s.name)}</h3></button></li>`);
+    projects.insertAdjacentHTML('beforeend', `
+      <article class="project" id="p-${s.key}" role="tabpanel" aria-labelledby="tab-${s.key}"${i ? ' hidden' : ''}>
+        <div class="project-head">
+          <div><h3>${s.title}</h3><p class="sub">${s.sub}</p></div>
+          <a class="btn" href="https://${url}/" target="_blank" rel="noopener">Visit the site ↗</a>
+        </div>
+        ${frame(`work/${s.key}-hero.jpg`, `${s.title}: home page`, url)}
+        <div class="pair">
+          <div>${frame(`work/${s.key}-chairs.jpg`, `${s.title}: welcome from the chairs`, url)}<p class="frame-caption">Welcome from the chairs</p></div>
+          <div>${frame(`work/${s.key}-topics.jpg`, `${s.title}: what the meeting covers`, url)}<p class="frame-caption">What the meeting covers</p></div>
+        </div>
+      </article>`);
+  });
+
+  // Selecting a meeting swaps the project and keeps the view at the top of it
+  const tabs = [...index.querySelectorAll('[role="tab"]')];
+  function show(tab, focus) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    if (focus) tab.focus();
+    const grid = document.querySelector('.work-grid');
+    const top = grid.getBoundingClientRect().top;
+    if (top < 0) window.scrollTo({ top: window.scrollY + top - 8 });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t));
+    t.addEventListener('keydown', e => {
+      const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (d) { e.preventDefault(); show(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+</script>
+</body>
+</html>
