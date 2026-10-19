@@ -106,17 +106,49 @@
   .nav .btn { padding: 12px 20px; font-size: 15px; color: var(--ink); }
 
   /* Hero */
-  .hero { position: relative; padding: 112px 0 24px; }
+  .hero {
+    position: relative; padding: 88px 0 24px;
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; align-items: center;
+  }
   .hero::before {
     content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; border-radius: 50%;
     background: var(--mint); top: -360px; right: -160px;
   }
-  .hero h1 { font-size: clamp(46px, 7.4vw, 100px); max-width: 1000px; margin-bottom: 36px; }
+  .hero h1 { font-size: clamp(44px, 5.6vw, 82px); margin-bottom: 32px; }
   .hero h1 em { font-style: normal; color: var(--rust); }
   .hero .lede { max-width: 760px; }
   .hero .actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 40px; }
   .mail-link { font: 900 17px/1 var(--display); font-variation-settings: "SOFT" 100; color: var(--rust); text-decoration: none; }
   .mail-link:hover { text-decoration: underline; }
+
+  /* Hero graphic: a fanned stack of real meeting sites */
+  .hero-art { position: relative; aspect-ratio: 1 / 0.92; }
+  .hero-art::before {
+    content: ""; position: absolute; width: 62%; aspect-ratio: 1; left: -10%; bottom: -8%; border-radius: 50%;
+    background: var(--peach-strong); z-index: 0;
+  }
+  .hero-art .frame { position: absolute; width: 78%; z-index: 1; }
+  .hero-art .frame-bar { height: 24px; padding: 0 10px; gap: 5px; }
+  .hero-art .frame-bar i { width: 7px; height: 7px; }
+  .hero-art .frame-bar span { display: none; }
+  .hero-art .f1 { top: 2%; right: 0; transform: rotate(5deg); }
+  .hero-art .f2 { top: 24%; left: 0; transform: rotate(-4deg); z-index: 2; }
+  .hero-art .f3 { bottom: 2%; right: 6%; transform: rotate(1.5deg); z-index: 3; }
+  .chip {
+    position: absolute; z-index: 4; display: flex; align-items: center; gap: 10px;
+    background: #fffaf3; border-radius: 999px; padding: 10px 18px 10px 12px;
+    font-size: 14px; font-weight: 600; white-space: nowrap;
+    box-shadow: 0 12px 28px -10px rgba(60, 40, 20, .35);
+    animation: bob 6s ease-in-out infinite;
+  }
+  .chip i { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; color: #fff; }
+  .chip small { font-weight: 400; color: var(--muted); }
+  .chip.c1 { left: -4%; bottom: 14%; }
+  .chip.c1 i { background: var(--moss); }
+  .chip.c2 { right: -2%; top: 18%; animation-delay: -3s; }
+  .chip.c2 i { background: var(--rust); }
+  @keyframes bob { 50% { transform: translateY(-8px); } }
+  @media (prefers-reduced-motion: reduce) { .chip { animation: none; } }
 
   /* Case study */
   .case { background: var(--dark); color: #f5e9d8; border-radius: var(--radius-xl); padding: 72px; margin-top: var(--section); }
@@ -255,6 +287,10 @@
   footer a { color: var(--muted); }
 
   /* Responsive */
+  @media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; gap: 48px; }
+    .hero-art { width: min(560px, 100%); justify-self: center; }
+  }
   @media (max-width: 1100px) {
     .cards, .steps { grid-template-columns: 1fr 1fr; }
     .work-grid { grid-template-columns: 220px 1fr; gap: 40px; }
@@ -291,6 +327,10 @@
     .nav ul li:not(:last-child) { display: none; }
     .hero { padding-top: 72px; }
     .hero::before { width: 300px; height: 300px; top: -200px; right: -120px; }
+    .chip { font-size: 12px; padding: 8px 14px 8px 10px; }
+    .chip small { display: none; }
+    .chip.c1 { left: 0; }
+    .chip.c2 { right: 0; }
     .case, .contact-card { padding: 40px 22px; border-radius: 28px; }
     .case-shots, .project .pair, .cards, .steps, .needs ul { grid-template-columns: 1fr; }
     .needs { padding: 28px 22px; }
@@ -318,12 +358,21 @@
   </nav>
 
   <header class="hero" id="top">
+    <div>
     <p class="eyebrow">Vitamin W · Samanta, website designer</p>
     <h1>Websites for <em>medical society meetings</em></h1>
     <p class="lede">I build standalone websites for the smaller meetings that medical societies run around their main congress, including focus meetings, courses and satellite symposia. Each site has the programme, faculty, venue and registration in one place, and I keep it updated with changes until the meeting takes place.</p>
     <div class="actions">
       <a class="btn" href="#work">See the work</a>
       <a class="mail-link" href="mailto:info@vitaminw.com">info@vitaminw.com</a>
+    </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <figure class="frame f1"><div class="frame-bar"><i></i><i></i><i></i><span></span></div><img src="work/foot-ankle-hero.jpg" alt="" width="1440" height="900"></figure>
+      <figure class="frame f2"><div class="frame-bar"><i></i><i></i><i></i><span></span></div><img src="work/shoulder-hero.jpg" alt="" width="1440" height="900"></figure>
+      <figure class="frame f3"><div class="frame-bar"><i></i><i></i><i></i><span></span></div><img src="work/hip-hero.jpg" alt="" width="1440" height="900"></figure>
+      <div class="chip c1"><i>✓</i>Programme updated <small>· today</small></div>
+      <div class="chip c2"><i>●</i>Registration open</div>
     </div>
   </header>
 
